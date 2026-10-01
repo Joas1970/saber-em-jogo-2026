@@ -1,0 +1,16 @@
+﻿import { chromium } from 'playwright';
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage();
+const failed=[]; page.on('requestfailed',r=>failed.push({url:r.url(),error:r.failure()}));
+await page.goto('http://127.0.0.1:8080/'); await page.waitForTimeout(1500);
+await page.locator('[name=nickname]').fill('Aluno Teste');
+await page.locator('[name=code]').fill('123456');
+await page.getByRole('button',{name:'Entrar na partida'}).click();
+await page.waitForURL('**/jogar*');
+if(await page.locator('[name=nickname]').inputValue()!=='Aluno Teste') throw Error('Nome não transferido');
+if(await page.locator('[name=code]').inputValue()!=='123456') throw Error('Código não transferido');
+await page.goto('http://127.0.0.1:8080/');
+await page.getByRole('link',{name:'Criar conta ou recuperar acesso'}).click();
+await page.waitForURL('**/login');
+console.log(JSON.stringify({studentNavigation:'pass',teacherNavigation:'pass',failed}));
+await browser.close();
