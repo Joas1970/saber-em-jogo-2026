@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Crie quizzes interativos, convide sua turma e acompanhe cada partida ao vivo."
+    />
+    <title>Saber em Jogo — aprender pode ser uma aventura</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Saber em Jogo, início">
+          <span class="brand-mark" aria-hidden="true">sj</span>
+          <span>Saber<span class="brand-highlight">em Jogo</span></span>
+        </a>
+
+        <div class="workspace-label">ESPAÇO DO PROFESSOR</div>
+        <nav class="main-nav">
+          <a class="nav-link active" href="#inicio"><span aria-hidden="true">⌂</span> Início</a>
+          <a class="nav-link" href="#atividades"><span aria-hidden="true">▤</span> Minhas atividades</a>
+          <a class="nav-link" href="#turmas"><span aria-hidden="true">♧</span> Minhas turmas</a>
+          <a class="nav-link" href="#relatorios"><span aria-hidden="true">▥</span> Relatórios</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="upgrade-card">
+            <span class="upgrade-icon" aria-hidden="true">✦</span>
+            <strong>Aprender fica mais fácil junto.</strong>
+            <p>Convide sua equipe e compartilhe atividades.</p>
+            <button class="text-button" type="button" data-toast="Convite enviado para sua equipe!">Convidar equipe <span aria-hidden="true">→</span></button>
+          </div>
+          <button class="profile" type="button" aria-label="Perfil de Marina Costa">
+            <span class="avatar">MC</span>
+            <span class="profile-copy"><strong>Marina Costa</strong><small>Professora</small></span>
+            <span class="profile-menu" aria-hidden="true">···</span>
+          </button>
+        </div>
+      </aside>
+
+      <main id="inicio" class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>Espaço do professor</span><span aria-hidden="true">/</span><strong>Início</strong></div>
+          <div class="topbar-actions">
+            <button class="icon-button notification-button" type="button" aria-label="Notificações" data-toast="Você está em dia! Nenhuma notificação nova.">
+              ♧<span class="notification-dot"></span>
+            </button>
+            <span class="topbar-divider"></span>
+            <span class="today-label">Quarta-feira, 14 de maio</span>
+          </div>
+        </header>
+
+        <div class="content-wrap">
+          <section class="welcome-row">
+            <div>
+              <p class="eyebrow">QUARTA-FEIRA, 14 DE MAIO DE 2025</p>
+              <h1>Bom dia, Marina <span aria-hidden="true">✦</span></h1>
+              <p class="welcome-subtitle">Pronta para transformar conhecimento em diversão?</p>
+            </div>
+            <button class="button button-primary create-button" type="button" data-open-create>
+              <span aria-hidden="true">＋</span> Criar atividade
+            </button>
+          </section>
+
+          <section class="stats-grid" aria-label="Resumo da sua conta">
+            <article class="stat-card">
+              <div class="stat-icon stat-icon-gold" aria-hidden="true">▤</div>
+              <div class="stat-info"><span>Atividades criadas</span><strong id="activity-count">12</strong><small><b>+2</b> este mês</small></div>
+              <span class="stat-sparkline sparkline-gold" aria-hidden="true">⌁</span>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon stat-icon-purple" aria-hidden="true">♧</div>
+              <div class="stat-info"><span>Alunos alcançados</span><strong>248</strong><small><b>+18%</b> este mês</small></div>
+              <span class="stat-sparkline sparkline-purple" aria-hidden="true">⌁</span>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon stat-icon-green" aria-hidden="true">◷</div>
+              <div class="stat-info"><span>Tempo de jogo</span><strong>36<span class="stat-unit">h</span></strong><small><b>+5h</b> este mês</small></div>
+              <span class="stat-sparkline sparkline-green" aria-hidden="true">⌁</span>
+            </article>
+          </section>
+
+          <section class="join-banner" aria-labelledby="join-title">
+            <div class="join-illustration" aria-hidden="true">
+              <span class="join-orbit orbit-one"></span><span class="join-orbit orbit-two"></span>
+              <span class="join-star">✦</span><span class="join-pencil">✎</span>
+              <span class="join-book">▰</span>
+            </div>
+            <div class="join-copy">
+              <span class="banner-kicker">VOCÊ É ESTUDANTE?</span>
+              <h2 id="join-title">Sua próxima partida começa aqui.</h2>
+              <p>Digite o código compartilhado pelo seu professor para entrar no jogo.</p>
+            </div>
+            <form class="join-form" id="join-form">
+              <label class="visually-hidden" for="join-code">Código da partida</label>
+              <input id="join-code" name="code" type="text" maxlength="6" placeholder="Ex: A7K2P9" autocomplete="off" aria-describedby="join-feedback" />
+              <button class="button button-light" type="submit">Entrar no jogo <span aria-hidden="true">→</span></button>
+              <span id="join-feedback" class="join-feedback" aria-live="polite"></span>
+            </form>
+          </section>
+
+          <section class="activity-section" id="atividades">
+            <div class="section-heading">
+              <div><h2>Continue de onde parou</h2><p>Suas atividades mais recentes</p></div>
+              <a class="subtle-link" href="#todas-atividades">Ver todas <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="activity-grid" id="activity-grid">
+              <article class="activity-card">
+                <div class="activity-art art-science"><span class="art-symbol" aria-hidden="true">⚗</span><span class="subject-tag">CIÊNCIAS</span><span class="art-decoration" aria-hidden="true">✦</span></div>
+                <div class="activity-details">
+                  <div class="activity-meta"><span>5º ano · 12 perguntas</span><button class="more-button" aria-label="Mais opções para Sistema Solar" type="button">···</button></div>
+                  <h3>Sistema Solar</h3>
+                  <div class="activity-footer"><span class="played"><span aria-hidden="true">♧</span> 32 jogaram</span><button class="play-button" type="button" data-play="Sistema Solar">Jogar <span aria-hidden="true">→</span></button></div>
+                </div>
+              </article>
+              <article class="activity-card">
+                <div class="activity-art art-history"><span class="art-symbol" aria-hidden="true">⌂</span><span class="subject-tag">HISTÓRIA</span><span class="art-decoration" aria-hidden="true">✦</span></div>
+                <div class="activity-details">
+                  <div class="activity-meta"><span>6º ano · 10 perguntas</span><button class="more-button" aria-label="Mais opções para Brasil Colônia" type="button">···</button></div>
+                  <h3>Brasil Colônia</h3>
+                  <div class="activity-footer"><span class="played"><span aria-hidden="true">♧</span> 28 jogaram</span><button class="play-button" type="button" data-play="Brasil Colônia">Jogar <span aria-hidden="true">→</span></button></div>
+                </div>
+              </article>
+              <article class="activity-card">
+                <div class="activity-art art-math"><span class="art-symbol" aria-hidden="true">÷</span><span class="subject-tag">MATEMÁTICA</span><span class="art-decoration" aria-hidden="true">✦</span></div>
+                <div class="activity-details">
+                  <div class="activity-meta"><span>4º ano · 8 perguntas</span><button class="more-button" aria-label="Mais opções para Frações sem mistério" type="button">···</button></div>
+                  <h3>Frações sem mistério</h3>
+                  <div class="activity-footer"><span class="played"><span aria-hidden="true">♧</span> 19 jogaram</span><button class="play-button" type="button" data-play="Frações sem mistério">Jogar <span aria-hidden="true">→</span></button></div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="live-section" id="turmas">
+            <div class="section-heading live-heading">
+              <div><h2>Acontecendo agora <span class="live-pulse"></span></h2><p>Acompanhe suas partidas em tempo real</p></div>
+              <a class="subtle-link" href="#partidas">Ver partidas <span aria-hidden="true">→</span></a>
+            </div>
+            <article class="live-card">
+              <div class="live-card-title">
+                <span class="live-game-icon" aria-hidden="true">⚗</span>
+                <div><h3>Desafio do Sistema Solar</h3><span>5º ano B <span class="bullet">·</span> Ciências</span></div>
+              </div>
+              <div class="live-progress">
+                <div class="live-progress-label"><span>Progresso da turma</span><strong>18 <small>/ 24 alunos</small></strong></div>
+                <div class="progress-track"><span style="width:75%"></span></div>
+                <span class="progress-caption">75% da turma já entrou</span>
+              </div>
+              <div class="live-code"><span>CÓDIGO DA PARTIDA</span><strong>ASTRO5</strong></div>
+              <button class="button button-dark" type="button" data-live-details>Ver partida <span aria-hidden="true">→</span></button>
+            </article>
+          </section>
+          <footer class="page-footer"><span>Feito para aprender brincando <span aria-hidden="true">✦</span></span><a href="#ajuda">Precisa de ajuda?</a></footer>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="modal" id="create-modal" aria-labelledby="create-title">
+      <form class="modal-panel" id="create-form">
+        <button class="modal-close" type="button" aria-label="Fechar" data-close-modal>×</button>
+        <span class="modal-kicker">NOVA ATIVIDADE</span>
+        <h2 id="create-title">Vamos criar um jogo?</h2>
+        <p>Comece com um nome e uma matéria. Você pode adicionar perguntas depois.</p>
+        <label for="activity-name">Nome da atividade</label>
+        <input id="activity-name" name="name" type="text" placeholder="Ex: A aventura das plantas" required maxlength="50" />
+        <label for="activity-subject">Matéria</label>
+        <select id="activity-subject" name="subject" required>
+          <option value="" disabled selected>Escolha uma matéria</option>
+          <option>Ciências</option><option>História</option><option>Matemática</option><option>Geografia</option><option>Português</option><option>Outra</option>
+        </select>
+        <label for="activity-grade">Turma (opcional)</label>
+        <input id="activity-grade" name="grade" type="text" placeholder="Ex: 5º ano" maxlength="30" />
+        <button class="button button-primary modal-submit" type="submit">Criar atividade <span aria-hidden="true">→</span></button>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="live-modal" aria-labelledby="live-title">
+      <div class="modal-panel live-modal-panel">
+        <button class="modal-close" type="button" aria-label="Fechar" data-close-modal>×</button>
+        <span class="modal-kicker"><span class="live-pulse"></span> PARTIDA AO VIVO</span>
+        <h2 id="live-title">Desafio do Sistema Solar</h2>
+        <p>5º ano B <span class="bullet">·</span> Ciências</p>
+        <div class="modal-game-code"><span>CÓDIGO PARA ENTRAR</span><strong>ASTRO5</strong><button type="button" class="copy-code" data-copy-code>Copiar código</button></div>
+        <div class="live-modal-stat"><div><strong>18 <small>/ 24</small></strong><span>alunos conectados</span></div><div><strong>12</strong><span>já finalizaram</span></div><div><strong>84%</strong><span>acertos em média</span></div></div>
+        <div class="modal-students"><h3>Participantes</h3><p><span class="online-dot"></span> Ana Clara <span>950 pts</span></p><p><span class="online-dot"></span> Pedro Henrique <span>820 pts</span></p><p><span class="online-dot"></span> Sofia Martins <span>780 pts</span></p></div>
+        <button class="button button-dark modal-submit" type="button" data-close-modal>Voltar ao painel</button>
+      </div>
+    </dialog>
+    <dialog class="modal" id="join-modal" aria-labelledby="join-game-title">
+      <div class="modal-panel join-game-panel">
+        <button class="modal-close" type="button" aria-label="Fechar" data-close-modal>×</button>
+        <div id="join-welcome">
+          <span class="modal-kicker">PARTIDA ENCONTRADA</span>
+          <h2 id="join-game-title">Desafio do Sistema Solar</h2>
+          <p>5º ano B <span class="bullet">·</span> Ciências <span class="bullet">·</span> 12 perguntas</p>
+          <form id="student-form">
+            <label for="student-name">Como podemos te chamar?</label>
+            <input id="student-name" name="student" type="text" placeholder="Seu nome" required maxlength="30" autocomplete="given-name" />
+            <button class="button button-primary modal-submit" type="submit">Entrar na partida <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
+        <div id="join-question" hidden>
+          <span class="modal-kicker">PERGUNTA 1 DE 12 <span class="game-points">+100 pontos</span></span>
+          <h2>Qual planeta é conhecido como Planeta Vermelho?</h2>
+          <div class="answer-options">
+            <button type="button" data-answer="wrong">Terra</button>
+            <button type="button" data-answer="correct">Marte</button>
+            <button type="button" data-answer="wrong">Júpiter</button>
+          </div>
+          <p id="answer-feedback" class="answer-feedback" aria-live="polite"></p>
+        </div>
+      </div>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
